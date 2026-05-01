@@ -8,8 +8,11 @@ builder.Services.AddDbContext<SchoolContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("SchoolDBConnectionString")));
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddFastReport();
 
 var app = builder.Build();
+app.UseStaticFiles();
+app.UseFastReport();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -31,5 +34,6 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
 
+app.MapRazorPages();
 
 app.Run();

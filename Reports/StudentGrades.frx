@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="04/20/2026 03:11:23" ReportInfo.Modified="04/20/2026 03:34:45" ReportInfo.CreatorVersion="2026.2.0.0">
+  <Styles Name="Gray">
+    <Style Name="Title" Font="Arial, 12pt, style=Bold"/>
+    <Style Name="Header" Fill.Color="Gainsboro" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Group" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Data" Font="Arial, 10pt"/>
+    <Style Name="Footer" Fill.Color="Gainsboro" Font="Arial, 10pt"/>
+    <Style Name="EvenRows" Fill.Color="WhiteSmoke" Font="Arial, 10pt"/>
+  </Styles>
+  <Dictionary>
+    <MsSqlDataConnection Name="SchoolDBConnectionString" ConnectionString="rijcmlqM7gJFg/iaLrqMhRfGy5lGozRa1EE5/vmo7a29r2RVTdvMDeRZOEJ3VbJBO2iSaOeOwQabfHZaxV/Ui6sMON8woDUlNs7J7NgqsJxHEYncsMKTAsNvpo7leR8+IwuJ2/SUrCewdQiESIaPAwIOlMksFsvwotx9XxDflxHaqxoUyfsM8Acsx8IPImFSSzdUGRi">
+      <TableDataSource Name="Table" Alias="StudentGrades" DataType="System.Int32" Enabled="true" SelectCommand="SELECT &#10;    s.StudentID,&#10;    s.FirstName + ' ' + s.LastName AS FullName,&#10;    e.Grade,&#10;    c.Title AS CourseTitle&#10;FROM &#10;    Students s&#10;INNER JOIN &#10;    Enrollments e ON s.StudentID = e.StudentID&#10;INNER JOIN &#10;    Courses c ON e.CourseID = c.CourseID&#10;ORDER BY &#10;    s.LastName, s.FirstName, c.Title;">
+        <Column Name="StudentID" DataType="System.Int32"/>
+        <Column Name="FullName" DataType="System.String"/>
+        <Column Name="Grade" DataType="System.Decimal"/>
+        <Column Name="CourseTitle" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="37.8">
+      <TextObject Name="Text1" Width="718.2" Height="37.8" Dock="Fill" Text="StudentGrades" HorzAlign="Center" VertAlign="Center" Font="Arial, 12pt, style=Bold" Style="Title"/>
+    </ReportTitleBand>
+    <PageHeaderBand Name="PageHeader1" Top="41.8" Width="718.2" Height="28.35">
+      <TextObject Name="Text3" Width="179.55" Height="18.9" Fill.Color="Gainsboro" Text="StudentID" Font="Arial, 10pt, style=Bold" Style="Header"/>
+      <TextObject Name="Text5" Left="179.55" Width="179.55" Height="18.9" Fill.Color="Gainsboro" Text="FullName" Font="Arial, 10pt, style=Bold" Style="Header"/>
+      <TextObject Name="Text7" Left="359.1" Width="179.55" Height="18.9" Fill.Color="Gainsboro" Text="Grade" Font="Arial, 10pt, style=Bold" Style="Header"/>
+      <TextObject Name="Text9" Left="538.65" Width="179.55" Height="18.9" Fill.Color="Gainsboro" Text="CourseTitle" Font="Arial, 10pt, style=Bold" Style="Header"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="74.15" Width="718.2" Height="18.9" EvenStyle="EvenRows" DataSource="Table">
+      <TextObject Name="Text2" Width="179.55" Height="18.9" Text="[StudentGrades.StudentID]" Font="Arial, 10pt" Style="Data"/>
+      <TextObject Name="Text4" Left="179.55" Width="179.55" Height="18.9" Text="[StudentGrades.FullName]" Font="Arial, 10pt" Style="Data"/>
+      <TextObject Name="Text6" Left="359.1" Width="179.55" Height="18.9" Text="[StudentGrades.Grade]" Font="Arial, 10pt" Style="Data"/>
+      <TextObject Name="Text8" Left="538.65" Width="179.55" Height="18.9" Text="[StudentGrades.CourseTitle]" Font="Arial, 10pt" Style="Data"/>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="97.05" Width="718.2" Height="18.9">
+      <TextObject Name="Text10" Width="718.2" Height="18.9" Dock="Fill" Fill.Color="Gainsboro" Text="[PageN]" HorzAlign="Right" Font="Arial, 10pt" Style="Footer"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>
